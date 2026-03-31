@@ -1,12 +1,14 @@
 'use client' // Error boundaries must be Client Components
  
 export default function GlobalError({
-  error,
+  error: _error,
   unstable_retry,
 }: {
   error: Error & { digest?: string }
   unstable_retry: () => void
 }) {
+  void _error
+
   return (
     // global-error must include html and body tags
     <html>
