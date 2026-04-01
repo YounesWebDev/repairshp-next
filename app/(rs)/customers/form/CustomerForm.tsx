@@ -4,7 +4,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Form } from "@/components/ui/form";
 import { insertCustomerSchema , type InsertCustomerSchemaType , type SelectCustomerSchemaType } from "@/zod-schemas/customer";
-
+import { Button } from "@/components/ui/button";
+import { InputWithLabel } from "@/components/inputs/inputWithLabel";
+import { Redo2, Save } from "lucide-react";
+import { TextAreaWithLabel } from "@/components/inputs/TextAreaWithLabel";
 type Props = {
     customer?: SelectCustomerSchemaType,
 }
@@ -43,9 +46,77 @@ export default function CustomerFrom({ customer }: Props) {
             </div>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(submitForm)}
-                        className="flex flex-col sm:flex-row gap-4 sm:gap-8"
+                        className="flex flex-col md:flex-row gap-4 md:gap-8"
                 >
-                    <p>{JSON.stringify(form.getValues())}</p>
+                    <div className="flex flex-col gap-4 w-full max-w-xs">
+                        <InputWithLabel<InsertCustomerSchemaType>
+                            fieldTitle="First Name"
+                            nameInSchema="firstName"
+                        />
+                        <InputWithLabel<InsertCustomerSchemaType>
+                            fieldTitle="Last Name"
+                            nameInSchema="lastName"
+                        />
+                        <InputWithLabel<InsertCustomerSchemaType>
+                            fieldTitle="Address 1"
+                            nameInSchema="address1"
+                        />
+                        <InputWithLabel<InsertCustomerSchemaType>
+                            fieldTitle="Address 2"
+                            nameInSchema="address2"
+                        />
+                        <InputWithLabel<InsertCustomerSchemaType>
+                            fieldTitle="City"
+                            nameInSchema="city"
+                        />
+                        <InputWithLabel<InsertCustomerSchemaType>
+                            fieldTitle="State"
+                            nameInSchema="state"
+                        />
+                        
+                    </div>
+                    <div className="flex flex-col gap-4 w-full max-w-xs">
+                        <InputWithLabel<InsertCustomerSchemaType>
+                            fieldTitle="Zip Code"
+                            nameInSchema="zip"
+                        />
+
+                        <InputWithLabel<InsertCustomerSchemaType>
+                            fieldTitle="Email"
+                            nameInSchema="email"
+                        />
+                        <InputWithLabel<InsertCustomerSchemaType>
+                            fieldTitle="phone"
+                            nameInSchema="phone"
+                        />
+                        <TextAreaWithLabel<InsertCustomerSchemaType>
+                            fieldTitle="Notes"
+                            nameInSchema="notes"
+                            className="h-40"
+                        />
+                        <div className="flex gap-2">
+                            <Button
+                                type="submit"
+                                className="w-3/4"
+                                variant="default"
+                                title="Save"
+                            >
+                                <Save/>
+                                Save
+                            </Button>
+
+                            <Button
+                                type="button"
+                                variant="destructive"
+                                title="Reset"
+                                onClick={()=> form.reset(defaultValues)}
+                            >
+                                <Redo2/>
+                                Reset
+                            </Button>
+                        </div>
+                    </div>
+                    
                 </form>
             </Form>
         </div>
