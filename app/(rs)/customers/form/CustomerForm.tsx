@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import { InputWithLabel } from "@/components/inputs/inputWithLabel";
 import { Redo2, Save } from "lucide-react";
 import { TextAreaWithLabel } from "@/components/inputs/TextAreaWithLabel";
+import { SelectWithLabel } from "@/components/inputs/SelectWithLabel";
+import { StatesArray } from "@/constants/StatesArray";
 type Props = {
     customer?: SelectCustomerSchemaType,
 }
@@ -69,9 +71,10 @@ export default function CustomerFrom({ customer }: Props) {
                             fieldTitle="City"
                             nameInSchema="city"
                         />
-                        <InputWithLabel<InsertCustomerSchemaType>
+                        <SelectWithLabel<InsertCustomerSchemaType>
                             fieldTitle="State"
                             nameInSchema="state"
+                            data={StatesArray}
                         />
                         
                     </div>
